@@ -1,5 +1,6 @@
 {
   "name": "refreshr",
+  "publisher": "RakibulIslam",
   "displayName": "Refreshr",
   "icon": "media/icon.png",
   "description": "A smart wellness companion for developers with customizable reminders for water, eye breaks, standing, and stretching.",
@@ -126,7 +127,7 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.125.0",
+    "@types/vscode": "^1.90.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "24.x",
     "typescript-eslint": "^8.61.1",
