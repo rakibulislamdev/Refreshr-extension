@@ -1,0 +1,144 @@
+{
+  "name": "refreshr",
+  "displayName": "Refreshr",
+  "icon": "media/icon.png",
+  "description": "A smart wellness companion for developers with customizable reminders for water, eye breaks, standing, and stretching.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "refreshr.start",
+        "title": "Refreshr: Start Reminders"
+      },
+      {
+        "command": "refreshr.stop",
+        "title": "Refreshr: Pause Reminders"
+      },
+      {
+        "command": "refreshr.stats",
+        "title": "Refreshr: View Wellness Stats"
+      },
+      {
+        "command": "refreshr.reset",
+        "title": "Refreshr: Reset Stats & Timers"
+      }
+    ],
+    "configuration": {
+      "title": "Refreshr Configuration",
+      "properties": {
+        "refreshr.water": {
+          "type": "object",
+          "default": {
+            "enabled": true,
+            "interval": 60,
+            "message": "Time to drink some water and stay hydrated!"
+          },
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "Enable/disable drinking water reminders."
+            },
+            "interval": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Interval for water reminders (in minutes)."
+            },
+            "message": {
+              "type": "string",
+              "description": "Custom notification message for water reminders."
+            }
+          },
+          "description": "Settings for Drinking Water reminders."
+        },
+        "refreshr.eye": {
+          "type": "object",
+          "default": {
+            "enabled": true,
+            "interval": 20,
+            "message": "Look at something 20 feet away for 20 seconds to rest your eyes."
+          },
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "Enable/disable eye break reminders."
+            },
+            "interval": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Interval for eye break reminders (in minutes)."
+            },
+            "message": {
+              "type": "string",
+              "description": "Custom notification message for eye breaks."
+            }
+          },
+          "description": "Settings for Eye Break reminders."
+        },
+        "refreshr.stand": {
+          "type": "object",
+          "default": {
+            "enabled": true,
+            "interval": 45,
+            "message": "Stand up, stretch, and move around for a bit."
+          },
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "Enable/disable stand & stretch reminders."
+            },
+            "interval": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Interval for stand & stretch reminders (in minutes)."
+            },
+            "message": {
+              "type": "string",
+              "description": "Custom notification message for stand & stretch reminders."
+            }
+          },
+          "description": "Settings for Stand & Stretch reminders."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "pnpm run package",
+    "compile": "pnpm run check-types && pnpm run lint && node esbuild.js",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "pnpm run check-types && pnpm run lint && node esbuild.js --production",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "pnpm run compile-tests && pnpm run compile && pnpm run lint",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.125.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "24.x",
+    "typescript-eslint": "^8.61.1",
+    "eslint": "^10.5.0",
+    "esbuild": "^0.28.1",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^6.0.3",
+    "@vscode/test-cli": "^0.0.15",
+    "@vscode/test-electron": "^3.0.0"
+  },
+  "overrides": {
+    "diff": "^8.0.4",
+    "serialize-javascript": "^7.0.6"
+  }
+}
